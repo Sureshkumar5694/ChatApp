@@ -1,0 +1,20 @@
+@import '../../meteoric_ionic-sass/ionic';
+@import '../../meteoric_ionicons-sass/ionicons';
+
+
+.header{
+  width: 100%;
+
+  .img{
+    width: 38px;
+    margin-top: 3px;
+    height: 30px;
+  }
+
+  .app-name{
+    position: relative;
+    top: -5px;
+    font-size:24px;
+    padding-left: 10px
+  }
+}

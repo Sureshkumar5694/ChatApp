@@ -1,0 +1,37 @@
+<template name="signUp">
+  {{#ionView}}
+    {{#ionContent}}
+    <form id="signup" >
+      <div class="list">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">First Name</span>
+          <input type="text" name="firstname" placeholder="First Name">
+        </label>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" name="lastname" placeholder="Last Name">
+        </label>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Username</span>
+          <input type="text" name="username" placeholder="username">
+        </label>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" name="email" placeholder="Email">
+        </label>
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" placeholder="Password">
+        </label>
+     </div>
+     <div>
+       <button type="submit" class="button button-medium button-positive">Submit</button>
+     </div>
+    </form>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

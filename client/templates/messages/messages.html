@@ -1,0 +1,28 @@
+<template name="messages">
+
+{{#ionView}}
+  {{#ionContent}}
+
+<div class="row">
+  <div class="col col-25 item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" id="to" placeholder="To">
+    </label>
+  </div>
+  <div class="col col-75 item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" id="messageText" placeholder="Enter your message">
+    </label>
+  </div>
+
+</div>
+
+  <div id="message">
+    {{#each messages}}
+      <div> {{text}} </div>
+    {{/each}}
+  </div>
+  {{/ionContent}}
+{{/ionView}}
+
+</template>
