@@ -12,9 +12,9 @@
 
   {{#contentFor "list"}}
     {{#each users}}
-      <div class="item item-icon-right cursor-pointer">
-        <div id="userclick">{{username}} {{> ionIcon icon="ios-arrow-right"}}</div>
-      </div>
+        <div class="item item-icon-right cursor-pointer" id="userclick">
+          <div >{{username}} <span class="badge">42</span></div>
+        </div>
     {{/each}}
   {{/contentFor}}
 
