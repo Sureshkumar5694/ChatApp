@@ -65,6 +65,7 @@ mobile-experience@1.0.4
 mobile-status-bar@1.0.13
 modules@0.7.7
 modules-runtime@0.7.7
+momentjs:moment@2.17.0
 mongo@1.1.14
 mongo-id@1.0.6
 npm-bcrypt@0.9.2
@@ -96,6 +97,7 @@ templating-tools@1.0.5
 themeteorchef:bert@1.1.0
 themeteorchef:jquery-validation@1.14.0
 tracker@1.1.1
+twbs:bootstrap@3.3.6
 ui@1.0.12
 underscore@1.0.10
 url@1.0.11

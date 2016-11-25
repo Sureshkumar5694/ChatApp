@@ -3,6 +3,6 @@ Meteor.publish("getMessages", function(toUser){
       $or: [ { from: this.userId, to: toUser }, { from: toUser, to: this.userId } ]
     });
 
-  console.log("Messages", messages);
-  return messages;
+  users = Meteor.users.find({ _id: { $ne: this.userId } });
+  return [messages, users];
 })

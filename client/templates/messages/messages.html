@@ -1,28 +1,72 @@
 <template name="messages">
 
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+      {{#if isAndroid}}
+        {{> ionIcon icon='android-more-vertical'}}
+      {{else}}
+        {{> ionIcon icon='navicon'}}
+      {{/if}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "list"}}
+    {{#each users}}
+      <div class="item item-icon-right cursor-pointer">
+        <div id="userclick">{{username}} {{> ionIcon icon="ios-arrow-right"}}</div>
+      </div>
+    {{/each}}
+  {{/contentFor}}
+
+
 {{#ionView}}
   {{#ionContent}}
-
-<div class="row">
-  <div class="col col-25 item-input-inset">
-    <label class="item-input-wrapper">
-      <input type="text" id="to" placeholder="To">
-    </label>
-  </div>
-  <div class="col col-75 item-input-inset">
-    <label class="item-input-wrapper">
-      <input type="text" id="messageText" placeholder="Enter your message">
-    </label>
-  </div>
-
-</div>
-
-  <div id="message">
+  <div>
     {{#each messages}}
-      <div> {{text}} </div>
+      <div class="container message1">
+          <div class="row">
+              <div style="width:100%">
+                  <div class="panel panel-primary">
+                      <div class="panel-body">
+                          <ul class="chat">
+                            {{#if sender}}
+                              <li class="left clearfix"><span class="chat-img pull-left" style="padding-right:10px">
+                                  <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                              </span>
+                                  <div class="chat-body clearfix">
+                                      <div class="header">
+                                          <strong class="primary-font">{{fromUser}}</strong> <small class="pull-right text-muted">
+                                              <span class="glyphicon glyphicon-time" style="padding-right:6px"></span>{{date}}</small>
+                                      </div>
+                                      <p>{{text}}</p>
+                                  </div>
+                              </li>
+                              {{else}}
+                              <li class="right clearfix"><span class="chat-img pull-right" style= "margin-left:20px">
+                                  <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                              </span>
+                                  <div class="chat-body clearfix">
+                                      <div class="header">
+                                          <small class=" text-muted"><span class="glyphicon glyphicon-time" style="padding-right:6px"></span>{{date}}</small>
+                                          <strong class="pull-right primary-font">{{fromUser}}</strong>
+                                      </div>
+                                      <p>{{text}}</p>
+                                  </div>
+                              </li>
+                              {{/if}}
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     {{/each}}
   </div>
+
   {{/ionContent}}
 {{/ionView}}
+<div class="">
+  <input class="item-input-wrapper message-box" type="text" id="messageText" placeholder="Enter your message">
+</div>
 
 </template>
