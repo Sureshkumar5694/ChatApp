@@ -16,6 +16,10 @@ Schema = new SimpleSchema({
     timestamp: {
         type: Date,
         label: "The time at message sent",
+    },
+    readstatus: {
+      type: Boolean,
+      label: "To check whether the user have read the data"
     }
 });
 

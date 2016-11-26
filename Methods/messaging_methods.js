@@ -1,8 +1,20 @@
 Meteor.methods({
   'insertMessage' :  function(message){
     if(Meteor.isServer){
-      console.log("Message",message);
       Messages.insert(message);
+    }
+  },
+
+  'updateMessages': function(toUser){
+    if(Meteor.isServer){
+      console.log("I am coming");
+      Messages.update({ to: this.userId , from: toUser} , { $set : { readstatus : true } }, {multi: true});
+    }
+  },
+
+  'updateMessage': function(id){
+    if (Meteor.isServer) {
+      Messages.update({ _id:id }, { $set:{ readstatus: true} });
     }
   }
 })

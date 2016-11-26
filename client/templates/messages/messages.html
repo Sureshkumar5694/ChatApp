@@ -10,11 +10,20 @@
     </button>
   {{/contentFor}}
 
-  {{#contentFor "list"}}
-    {{#each users}}
-        <div class="item item-icon-right cursor-pointer" id="userclick">
-          <div >{{username}} <span class="badge">42</span></div>
+  {{#contentFor "list" }}
+    {{#each user in users}}
+      {{#with user}}
+      {{#if notCurrentUser user}}
+        <div id="userclick"  class="item item-icon-right cursor-pointer">
+          <div>
+            <span>{{user.username}}</span>
+             {{#if unreadMessageCount user}}
+                <span class="badge">{{unreadMessageCount user}}</span>
+              {{/if}}
+             </div>
         </div>
+      {{/if}}
+      {{/with }}
     {{/each}}
   {{/contentFor}}
 
