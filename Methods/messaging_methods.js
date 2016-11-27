@@ -7,7 +7,6 @@ Meteor.methods({
 
   'updateMessages': function(toUser){
     if(Meteor.isServer){
-      console.log("I am coming");
       Messages.update({ to: this.userId , from: toUser} , { $set : { readstatus : true } }, {multi: true});
     }
   },

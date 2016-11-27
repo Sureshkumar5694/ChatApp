@@ -27,8 +27,10 @@ Template.messages.helpers({
       return user._id !== Meteor.userId();
     },
     unreadMessageCount : function(user){
-      console.log("count",  Messages.find({from: user._id, to: Meteor.userId(), readstatus: false}).count());
       return Messages.find({from: user._id, to: Meteor.userId(), readstatus: false}).count();
+    },
+    username : function(){
+      return Session.get("username");
     }
 })
 
@@ -43,13 +45,14 @@ Template.messages.events({
   }
 })
 
-const messageBoxHeight = $(document).height() - $('.bar-header').height();
+const messageBoxHeight = $(document).height();
 
 function calculateScroll(){
-   if($('.message1').length > 0){
-     lastMessageOffset = $('.message1').last()[0].offsetTop + $('.message1').last().height();
+   if($('.msg').length > 0){
+     lastMessageOffset = $('.msg').last()[0].offsetTop + $('.msg').last().height();
+     console.log(lastMessageOffset,"+",$('.msg').last().height());
      if(lastMessageOffset > messageBoxHeight){
-       $('.overflow-scroll').scrollTop(lastMessageOffset + $('.message').last().height());
+       $('.overflow-scroll').scrollTop(lastMessageOffset + 200);
      }
    }
 }

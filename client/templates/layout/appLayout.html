@@ -1,17 +1,29 @@
 <template name="appLayout">
   {{#ionBody}}
-    <!-- {{> header}} -->
+
 
     {{#ionSideMenuContainer}}
 
       {{#ionSideMenus}}
-
-        {{#ionSideMenu}}
+<!--
+          {{#ionSideMenu side="right"}}
           <div class="bar bar-header bar-dark">
             <h1 class="title">Contacts</h1>
           </div>
           <div class="content has-header">
             <div class="list" id="contact-list">
+              {{> yield "list"}}
+            </div>
+          </div>
+        {{/ionSideMenu}} -->
+
+
+        {{#ionSideMenu side="right"}}
+          <div class="bar bar-header bar-dark">
+            <h1 class="title">Contacts</h1>
+          </div>
+          <div class="content has-header">
+            <div class="list" id="contact-list" data-ion-menu-close>
               {{> yield "list"}}
             </div>
           </div>
@@ -21,7 +33,9 @@
 
       {{#ionSideMenuContent}}
 
-        {{> ionNavBar class="bar-positive"}}
+        {{> header}}
+
+        {{> ionNavBar class="bar-light"}}
 
         {{#ionNavView}}
           {{> yield}}

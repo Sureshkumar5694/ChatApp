@@ -1,5 +1,18 @@
 <template name="signUp">
   {{#ionView}}
+
+  {{#contentFor "headerTitle"}}
+    <img class="img" src="/images/logo1.png"/>
+    <span class="headertitle"># Chat</span>
+    <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+      {{#if isAndroid}}
+        {{> ionIcon icon='android-more-vertical'}}
+      {{else}}
+        {{> ionIcon icon='navicon'}}
+      {{/if}}
+    </button>
+  {{/contentFor}}
+
     {{#ionContent}}
     <form id="signup" >
       <div class="list">

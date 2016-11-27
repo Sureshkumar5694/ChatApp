@@ -1,7 +1,19 @@
 <template name="messages">
 
-  {{#contentFor "headerButtonLeft"}}
+  <!-- {{#contentFor "headerButtonLeft"}}
     <button class="button button-clear pull-left" data-ion-menu-toggle="left">
+      {{#if isAndroid}}
+        {{> ionIcon icon='android-more-vertical'}}
+      {{else}}
+        {{> ionIcon icon='navicon'}}
+      {{/if}}
+    </button>
+  {{/contentFor}} -->
+
+  {{#contentFor "headerTitle"}}
+    <img class="img" src="/images/logo1.png"/>
+    <span class="headertitle"># {{username}}</span>
+    <button class="button button-clear pull-right" data-ion-menu-toggle="right">
       {{#if isAndroid}}
         {{> ionIcon icon='android-more-vertical'}}
       {{else}}
@@ -10,68 +22,52 @@
     </button>
   {{/contentFor}}
 
+
   {{#contentFor "list" }}
-    {{#each user in users}}
-      {{#with user}}
-      {{#if notCurrentUser user}}
-        <div id="userclick"  class="item item-icon-right cursor-pointer">
-          <div>
-            <span>{{user.username}}</span>
-             {{#if unreadMessageCount user}}
-                <span class="badge">{{unreadMessageCount user}}</span>
-              {{/if}}
-             </div>
-        </div>
-      {{/if}}
-      {{/with }}
-    {{/each}}
+  <div class="direct-messages">
+    <h4 class="direct-message-header">DIRECT MESSAGES</h4>
+  </div>
+  <ul class="user-list">
+      {{#each user in users}}
+        {{#with user}}
+        {{#if notCurrentUser user}}
+          <li class="user cursor-pointer">
+            <span># {{user.username}}</span>
+            {{#if unreadMessageCount user}}
+              <span class="badge">{{unreadMessageCount user}}</span>
+            {{/if}}
+          </li>
+        {{/if}}
+        {{/with }}
+      {{/each}}
+  </ul>
   {{/contentFor}}
 
 
-{{#ionView}}
+{{#ionView class='message-page'}}
   {{#ionContent}}
   <div>
-    {{#each messages}}
-      <div class="container message1">
-          <div class="row">
-              <div style="width:100%">
-                  <div class="panel panel-primary">
-                      <div class="panel-body">
-                          <ul class="chat">
-                            {{#if sender}}
-                              <li class="left clearfix"><span class="chat-img pull-left" style="padding-right:10px">
-                                  <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                              </span>
-                                  <div class="chat-body clearfix">
-                                      <div class="header">
-                                          <strong class="primary-font">{{fromUser}}</strong> <small class="pull-right text-muted">
-                                              <span class="glyphicon glyphicon-time" style="padding-right:6px"></span>{{date}}</small>
-                                      </div>
-                                      <p>{{text}}</p>
-                                  </div>
-                              </li>
-                              {{else}}
-                              <li class="right clearfix"><span class="chat-img pull-right" style= "margin-left:20px">
-                                  <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                              </span>
-                                  <div class="chat-body clearfix">
-                                      <div class="header">
-                                          <small class=" text-muted"><span class="glyphicon glyphicon-time" style="padding-right:6px"></span>{{date}}</small>
-                                          <strong class="pull-right primary-font">{{fromUser}}</strong>
-                                      </div>
-                                      <p>{{text}}</p>
-                                  </div>
-                              </li>
-                              {{/if}}
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    {{/each}}
+    <ol class="chat">
+      {{#each messages}}
+        {{#if sender}}
+          <li class="self">
+            <div class="msg">
+              <p>{{text}}</p>
+              <time>{{date}}</time>
+            </div>
+          </li>
+        {{else}}
+          <li class="other">
+            <div class="msg">
+                <div class="user">{{fromUser}}</div>
+              <p>{{text}}</p>
+              <time>{{date}}</time>
+            </div>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ol>
   </div>
-
   {{/ionContent}}
 {{/ionView}}
 <div class="">

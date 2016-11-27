@@ -5,6 +5,5 @@ Meteor.startup(function(){
   type: 'default'
   };
 
-
-  Session.set("toUser", "mGHzLiCXy32dvs53Y")
+  Session.set("username", "Chat");
 });
