@@ -1,15 +1,23 @@
+var messagesHandle;
+var groupsHandle;
 Template.messages.onCreated(function(){
   template = this;
-  template.autorun(function(){
-    template.subscribe('getMessages', Session.get("toUser"))
-  })
+  messagesHandle = template.subscribe('getMessages', Session.get("toUser"))
+  groupsHandle = template.subscribe('getGroups');
 })
 
 Template.messages.helpers({
     messages : function(){
-      Meteor.call("updateMessages", Session.get("toUser"));
-      return Messages.find({
-          $or: [ { from: Meteor.userId(), to: Session.get("toUser") }, { from: Session.get("toUser"), to: Meteor.userId()} ]} ,{timestamp: -1});
+      if(messagesHandle.ready()){
+        if(Meteor.users.findOne({_id : Session.get("toUser")})){
+          // Meteor.call("updateMessages", Session.get("toUser"));
+          messages = Messages.find({ $or: [ { from: Meteor.userId(), to: Session.get("toUser") }, { from: Session.get("toUser"), to: Meteor.userId()} ]} ,{timestamp: -1});
+          console.log(messages.count());
+          return messages.count() && messages;
+        }else{
+          return Messages.find({to: Session.get("toUser"), messageType: "group"},{timestamp: -1});
+        }
+      }
     },
     users : function(){
       return Meteor.users.find();
@@ -27,17 +35,28 @@ Template.messages.helpers({
       return user._id !== Meteor.userId();
     },
     unreadMessageCount : function(user){
-      return Messages.find({from: user._id, to: Meteor.userId(), readstatus: false}).count();
+        if(messagesHandle.ready()){
+          return Messages.find({from: user._id, to: Meteor.userId(), readstatus: false}).count();
+        }
     },
     username : function(){
       return Session.get("username");
+    },
+    groups : function(){
+      if(groupsHandle.ready()){
+        groups = Groups.find();
+        console.log("Group Count" , groups.count());
+        return groups.count() && groups;
+      }
     }
 })
 
 Template.messages.events({
   'keypress #messageText' : function(event){
     if(event.keyCode == 13){
-      message = {text : $(' #messageText').val(), from : Meteor.userId() , to : Session.get("toUser") , timestamp : new Date(), readstatus : false }
+      messageType = Meteor.users.findOne({_id : Session.get("toUser")}) ? "direct" : "group";
+      message = {text : $(' #messageText').val(), from : Meteor.userId() , to : Session.get("toUser") ,
+        timestamp : new Date(), readstatus : false , messageType : messageType}
       Meteor.call('insertMessage' , message);
       $('#messageText').val('');
       calculateScroll();
@@ -50,7 +69,6 @@ const messageBoxHeight = $(document).height();
 function calculateScroll(){
    if($('.msg').length > 0){
      lastMessageOffset = $('.msg').last()[0].offsetTop + $('.msg').last().height();
-     console.log(lastMessageOffset,"+",$('.msg').last().height());
      if(lastMessageOffset > messageBoxHeight){
        $('.overflow-scroll').scrollTop(lastMessageOffset + 200);
      }

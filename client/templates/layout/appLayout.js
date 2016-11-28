@@ -5,4 +5,7 @@ Template.appLayout.events({
     $('#contact-list .user').removeClass('selected');
     $(event.currentTarget).addClass('selected');
   },
+  'click .add-icon' : function(){
+    Router.go("/group")
+  }
 })

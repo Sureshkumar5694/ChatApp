@@ -1,15 +1,4 @@
 <template name="messages">
-
-  <!-- {{#contentFor "headerButtonLeft"}}
-    <button class="button button-clear pull-left" data-ion-menu-toggle="left">
-      {{#if isAndroid}}
-        {{> ionIcon icon='android-more-vertical'}}
-      {{else}}
-        {{> ionIcon icon='navicon'}}
-      {{/if}}
-    </button>
-  {{/contentFor}} -->
-
   {{#contentFor "headerTitle"}}
     <img class="img" src="/images/logo1.png"/>
     <span class="headertitle"># {{username}}</span>
@@ -41,6 +30,19 @@
         {{/with }}
       {{/each}}
   </ul>
+
+  <div class="group-messages">
+    <h4 class="group-message-header">GROUP <span class="add-icon cursor-pointer">+</span></h4>
+  </div>
+  <ul class="group-list">
+      {{#each group in groups}}
+         {{#with group}}
+          <li class="user cursor-pointer">
+            <span># {{name}}</span>
+          </li>
+        {{/with }}
+      {{/each}}
+   </ul>
   {{/contentFor}}
 
 

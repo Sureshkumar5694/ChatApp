@@ -191,51 +191,50 @@
     margin-right: 4px;
 }
 
-@-webikt-keyframes pulse {
-  from { opacity: 0; }
-  to { opacity: 0.5; }
-}
-
-::-webkit-scrollbar {
-    min-width: 12px;
-    width: 12px;
-    max-width: 12px;
-    min-height: 12px;
-    height: 12px;
-    max-height: 12px;
-    background: #252C33;
-    box-shadow: inset 0px 50px 0px rgba(27,35,42,0.9), inset 0px -50px 0px #eee;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.2);
-    border: none;
-    border-radius: 100px;
-    border: solid 3px #252C33;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgba(255,255,255,0.1);
-}
-
-::-webkit-scrollbar-button {
-    display: block;
-    height: 26px;
-}
-
+// @-webikt-keyframes pulse {
+//   from { opacity: 0; }
+//   to { opacity: 0.5; }
+// }
+//
+// ::-webkit-scrollbar {
+//     min-width: 12px;
+//     width: 12px;
+//     max-width: 12px;
+//     min-height: 12px;
+//     height: 12px;
+//     max-height: 12px;
+//     background: #252C33;
+//     box-shadow: inset 0px 50px 0px rgba(27,35,42,0.9), inset 0px -50px 0px #eee;
+// }
+//
+// ::-webkit-scrollbar-thumb {
+//     background: rgba(255,255,255,0.2);
+//     border: none;
+//     border-radius: 100px;
+//     border: solid 3px #252C33;
+// }
+//
+// ::-webkit-scrollbar-thumb:hover {
+//     background: rgba(255,255,255,0.1);
+// }
+//
+// ::-webkit-scrollbar-thumb:active {
+//     background: rgba(255,255,255,0.1);
+// }
+//
+// ::-webkit-scrollbar-button {
+//     display: block;
+//     height: 26px;
+// }
+//
 .cursor-pointer{
   cursor: pointer;
 }
 
 .message-box{
-  width: 93%;
+  width: 100%;
+  padding: 0px 40px;
   height: 60px !important;
-  margin-left: 23px;
-  padding-left: 20px !important;
   position: absolute;
   bottom: 0px;
   z-index: 5;
@@ -275,18 +274,18 @@
   height: 55px !important;
   background: rgba(82,179,217,0.9) !important;
 }
-.user-list{
+.user-list, .group-list{
   list-style-type: none;
   margin: 0px;
 }
 
-.direct-message-header{
+.direct-message-header, .group-message-header{
   font-weight: 700;
   color: #ab9ba9;
   margin-left: 20px;
 }
 
-.user-list li{
+.user-list li, .group-list li{
   padding-left: 38px;
   padding-top: 15px;
   padding-bottom: 10px;
@@ -294,4 +293,24 @@
   color: #776173;
   font-weight: bold;
   border-bottom: 1px solid #eee;
+}
+.group-messages{
+  margin-top: 24px;
+}
+.add-icon{
+  padding-left: 33px;
+  font-size: 26px;
+}
+.group-header{
+  margin-top: 2% !important;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+.group-name{
+  width: 93%;
+  margin-left: 2%;
+}
+#create{
+  margin-top: 2%;
+  margin-left: 2%;
 }

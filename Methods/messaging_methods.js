@@ -15,5 +15,11 @@ Meteor.methods({
     if (Meteor.isServer) {
       Messages.update({ _id:id }, { $set:{ readstatus: true} });
     }
+  },
+
+  'createGroup' : function(name){
+    if(Meteor.isServer){
+      Groups.insert(name);
+    }
   }
 })

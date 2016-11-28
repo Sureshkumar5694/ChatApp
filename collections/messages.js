@@ -20,6 +20,10 @@ Schema = new SimpleSchema({
     readstatus: {
       type: Boolean,
       label: "To check whether the user have read the data"
+    },
+    messageType: {
+      type : String,
+      label : "To check whether the message is to group or to a person"
     }
 });
 

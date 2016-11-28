@@ -1,0 +1,25 @@
+<template name="groups">
+
+  {{#contentFor "headerTitle"}}
+    <img class="img" src="/images/logo1.png"/>
+    <span class="headertitle"># {{username}}</span>
+    <button class="button button-clear pull-right" data-ion-menu-toggle="right">
+      {{#if isAndroid}}
+        {{> ionIcon icon='android-more-vertical'}}
+      {{else}}
+        {{> ionIcon icon='navicon'}}
+      {{/if}}
+    </button>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+        <h1 class="group-header">Create a group</h1>
+        <label class="item item-input item-floating-label group-name">
+          <span class="input-label">Name</span>
+          <input type="text" id="group-name" placeholder="Enter group name">
+        </label>
+        <button id="create" class="button button-medium button-positive">Create</button>
+    {{/ionContent}}
+  {{/ionView}}
+</template>
